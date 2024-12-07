@@ -13,7 +13,17 @@ function addMoreItem() {
 function deleteItem(index) { 
     if (invoice.items.length > 1) { 
         invoice.items.splice(index, 1); 
-    }}
+    }
+}
+
+function getSubtotal() {
+    let subTotal = 0;
+    invoice.items.forEach(item => {
+        subTotal += item.amount;
+    });
+    invoice.subtotal = subTotal;
+    return subTotal;
+}
 </script>
 
 <template>
@@ -65,8 +75,8 @@ function deleteItem(index) {
                     <th class="p-2">Rate</th>
                     <th class="p-2 w-[200px] text-right pr-5">Amount</th>
                 </tr>
-                <tr v-for="(item, index) in invoice.items" :key="index" @dblclick="deleteItem(index)">
-                    <td class="py-1">
+                <tr v-for="(item, index) in invoice.items" :key="index" >
+                    <td class="py-1" @dblclick="deleteItem(index)">
                       <input v-model="item.description" class="w-full pl-5" type="text" placeholder="Description" />
                     </td>
                     <td class="">
@@ -81,7 +91,7 @@ function deleteItem(index) {
                     </td>
                 </tr>
             </table>
-            <button @click="addMoreItem" class="mt-5 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            <button @click="addMoreItem()" class="mt-5 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                 Add More
             </button>
             <p class="mt-10 text-gray-800 text-2xl">
@@ -100,7 +110,7 @@ function deleteItem(index) {
                     <div class="mt-10 flex-y-5 text-right space-y-3 w-full">
                         <p>
                             <span>Subtotal</span>
-                            <input readonly class="focus:ring-0 focus:ring-offset-0 text-right ml-2 pr-4 w-[200px] border-0" placeholder="Subtotal">
+                            <input :value="getSubtotal()" readonly class="focus:ring-0 focus:ring-offset-0 text-right ml-2 pr-4 w-[200px] border-0" placeholder="Subtotal">
                         </p>
                         <p>
                             <span>Tax</span>
