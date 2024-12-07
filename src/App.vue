@@ -1,5 +1,6 @@
 <script setup>
 import { invoice } from "./data/invoice";
+import {invoice1, invoice2} from "./data/data";
 
 function addMoreItem() {
     invoice.items.push({
@@ -100,6 +101,12 @@ function getTotal() {
             </table>
             <button @click="addMoreItem()" class="mt-5 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                 Add More
+            </button>
+            <button @click="Object.assign(invoice, invoice1)" class="ml-2 mt-5 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                Load Invoice 1
+            </button>
+            <button @click="Object.assign(invoice, invoice2)" class="ml-2 mt-5 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                Load Invoice 2
             </button>
             <p class="mt-10 text-gray-800 text-2xl">
               {{ invoice }}
