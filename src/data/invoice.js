@@ -7,7 +7,7 @@ export const invoice = reactive({
     date: '',
     dueDate: '',
     additionalNote: '',
-    item: [{
+    items: [{
         description: '',
         quantity: '',
         rate: '',

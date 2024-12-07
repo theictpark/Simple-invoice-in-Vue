@@ -1,7 +1,14 @@
 <script setup>
 import { invoice } from "./data/invoice";
 
-
+function addMoreItem() {
+    invoice.items.push({
+        description: '',
+        quantity: '',
+        rate: '',
+        amount: '',
+    })
+}
 </script>
 
 <template>
@@ -53,22 +60,22 @@ import { invoice } from "./data/invoice";
                     <th class="p-2">Rate</th>
                     <th class="p-2 w-[200px] text-right pr-5">Amount</th>
                 </tr>
-                <tr>
+                <tr v-for="(item, index) in invoice.items" :key="index">
                     <td class="py-1">
-                        <input class="w-full pl-5" type="text" placeholder="Description" />
+                        <input v-model="item.description" class="w-full pl-5" type="text" placeholder="Description" />
                     </td>
                     <td class="">
-                        <input class="w-full" type="number" placeholder="Quantity" />
+                        <input v-model="item.quantity" class="w-full" type="number" placeholder="Quantity" />
                     </td>
                     <td class="">
-                        <input class="w-full" type="number" placeholder="Rate">
+                        <input v-model="item.rate" class="w-full" type="number" placeholder="Rate">
                     </td>
                     <td class="py-1 pr-5 text-right text-gray-800">
                         $ 0.00
                     </td>
                 </tr>
             </table>
-            <button class="mt-5 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            <button @click="addMoreItem" class="mt-5 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                 Add More
             </button>
             <p class="mt-10 text-gray-800 text-2xl">
