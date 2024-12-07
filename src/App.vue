@@ -24,6 +24,13 @@ function getSubtotal() {
     invoice.subtotal = subTotal;
     return subTotal;
 }
+
+function getTotal() {
+    let total = 0;
+    total = invoice.subtotal + (invoice.subtotal * (invoice.tax / 100));
+    invoice.total = total;
+    return total;
+}
 </script>
 
 <template>
@@ -118,11 +125,7 @@ function getSubtotal() {
                         </p>
                         <p>
                             <span>Total</span>
-                            <input readonly class="focus:ring-0 focus:ring-offset-0 text-right ml-2 pr-4 w-[200px] border-0" placeholder="Total">
-                        </p>
-                        <p>
-                            <span>Balace Due</span>
-                            <input readonly class="focus:ring-0 focus:ring-offset-0 text-right ml-2 pr-4 w-[200px] border-0" placeholder="Balance">
+                            <input :value="getTotal()" readonly class="focus:ring-0 focus:ring-offset-0 text-right ml-2 pr-4 w-[200px] border-0" placeholder="Total">
                         </p>
                     </div>
                 </div>
