@@ -9,6 +9,11 @@ function addMoreItem() {
         amount: '',
     })
 }
+
+function deleteItem(index) { 
+    if (invoice.items.length > 1) { 
+        invoice.items.splice(index, 1); 
+    }}
 </script>
 
 <template>
@@ -60,7 +65,7 @@ function addMoreItem() {
                     <th class="p-2">Rate</th>
                     <th class="p-2 w-[200px] text-right pr-5">Amount</th>
                 </tr>
-                <tr v-for="(item, index) in invoice.items" :key="index">
+                <tr v-for="(item, index) in invoice.items" :key="index" @dblclick="deleteItem(index)">
                     <td class="py-1">
                         <input v-model="item.description" class="w-full pl-5" type="text" placeholder="Description" />
                     </td>
