@@ -14,33 +14,33 @@ import { invoice } from "./data/invoice";
                 <p class="mt-5">
                     Sender
                 </p>
-                <textarea name="" id="" cols="30" rows="2"></textarea>
+                <textarea v-model="invoice.sender" name="" id="" cols="30" rows="2"></textarea>
                 <div class="flex space-x-2">
                     <div class="flex flex-col">
                         <span>Bill to</span>
-                        <textarea name="" id="" cols="30" rows="2"></textarea>
+                        <textarea v-model="invoice.billTo" name="" id="" cols="30" rows="2"></textarea>
                     </div>
                     <div class="flex flex-col">
                         <span>Ship to</span>
-                        <textarea name="" id="" cols="30" rows="2"></textarea>
+                        <textarea v-model="invoice.shipTo" name="" id="" cols="30" rows="2"></textarea>
                     </div>
                 </div>
             </div>
             <div class="flex flex-col w-1/2 items-end">
                 <h1 class="mt-12 text-4xl uppercase text-right mb-5">Invoice</h1>
-                <input class="w-[200px] text-right" type="text" placeholder="Invoice Number">
+                <input v-model="invoice.invoiceNumber" class="w-[200px] text-right" type="text" placeholder="Invoice Number">
                 <div class="mt-10 flex-y-5 text-right space-y-3 w-full">
                     <p>
                         <span>Date</span>
-                        <input class="ml-2 w-[200px] ">
+                        <input v-model="invoice.date" class="ml-2 w-[200px] ">
                     </p>
                     <p>
                         <span>Due Date</span>
-                        <input class="ml-2 w-[200px]">
+                        <input v-model="invoice.dueDate" class="ml-2 w-[200px]">
                     </p>
                     <p>
                         <span>Additional Note</span>
-                        <input class="ml-2 w-[200px]" type="text">
+                        <input v-model="invoice.additionalNote" class="ml-2 w-[200px]" type="text">
                     </p>
                 </div>
             </div>
@@ -71,14 +71,17 @@ import { invoice } from "./data/invoice";
             <button class="mt-5 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                 Add More
             </button>
+            <p class="mt-10 text-gray-800 text-2xl">
+              {{ invoice }}
+            </p>
         </div>
         <div class="mt-[200px]">
             <div class="flex justify-between">
                 <div class="flex flex-col space-y-5 w-1/2">
                     <span>Notes</span>
-                    <textarea name="" id="" cols="30" rows="2"></textarea>
+                    <textarea v-model="invoice.notes" name="" id="" cols="30" rows="2"></textarea>
                     <span>Terms</span>
-                    <textarea name="" id="" cols="30" rows="2"></textarea>
+                    <textarea v-model="invoice.terms" name="" id="" cols="30" rows="2"></textarea>
                 </div>
                 <div class="flex flex-col w-1/2 items-end">
                     <div class="mt-10 flex-y-5 text-right space-y-3 w-full">
@@ -88,7 +91,7 @@ import { invoice } from "./data/invoice";
                         </p>
                         <p>
                             <span>Tax</span>
-                            <input type="number" class="tax text-right w-[200px] ml-2">
+                            <input v-model="invoice.tax" type="number" class="tax text-right w-[200px] ml-2">
                         </p>
                         <p>
                             <span>Total</span>
