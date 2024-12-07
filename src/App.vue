@@ -67,16 +67,17 @@ function deleteItem(index) {
                 </tr>
                 <tr v-for="(item, index) in invoice.items" :key="index" @dblclick="deleteItem(index)">
                     <td class="py-1">
-                        <input v-model="item.description" class="w-full pl-5" type="text" placeholder="Description" />
+                      <input v-model="item.description" class="w-full pl-5" type="text" placeholder="Description" />
                     </td>
                     <td class="">
-                        <input v-model="item.quantity" class="w-full" type="number" placeholder="Quantity" />
+                      <input v-model="item.quantity" class="w-full" type="number" placeholder="Quantity" />
                     </td>
                     <td class="">
-                        <input v-model="item.rate" class="w-full" type="number" placeholder="Rate">
+                      <input v-model="item.rate" class="w-full" type="number" placeholder="Rate">
                     </td>
                     <td class="py-1 pr-5 text-right text-gray-800">
-                        $ 0.00
+                      <span class="text-2xl">৳</span> {{item.amount = item.quantity * item.rate}}
+                      <span @click="deleteItem(index)" class="mt-5 bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-4 rounded">x</span>
                     </td>
                 </tr>
             </table>
